@@ -204,6 +204,109 @@ server.listen(3000, () => {
 })
 ```
 
+#  NPM
+
+## package.json
+
+```json
+{
+  "name": "npm-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+```
+
+> `npm i underscore`
+
+```json
+"dependencies": {
+  "underscore": "^1.13.6"
+}
+```
+
+## Using a Package
+
+```js
+const us = require('underscore')
+// Core Module
+// file or folder: relative path
+// 3rd Party Lib: node_modules
+const result = us.contains([8, 5, 4], 5);
+console.log(result);
+```
+
+## Source Control
+
+> `npm i`
+>
+> - download all dependencies in package.json
+
+## Semantic Versioning
+
+```json
+"dependencies": {
+  "underscore": "^1.13.6" // SemVer 
+}
+```
+
+`Major.Minor.Patch`
+
+a.b.c
+
+- ^ --- a.x
+- ~ --- a.b.x
+
+## List Installed Package
+
+`npm list [--depth=x]`
+
+## Install a Spec Version
+
+`npm i mongoose@2.4.2`
+
+## Update a Published Package
+
+`npm version [major | minor | patch]`
+
+`npm publish`
+
+## DevDependencies
+
+ `npm i --save-dev jshint`
+
+```json
+{
+  "name": "npm-demo",
+  "version": "2.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.3.2",
+    "underscore": "^1.13.6"
+  },
+  "devDependencies": {
+    "jshint": "^2.13.6"
+  }
+}
+```
+
+## Update Local Packages
+
+ `npm outdated # check outdated packages`
+
+`npm update `
+
 
 
 
