@@ -456,6 +456,129 @@ app.delete('/api/courses/:id', (req, res) => {
 
 
 
+# Express Advanced Topics
+
+##  Middleware
+
+> Request Processing Pipeline
+
+![image-20240424234328563](./README.assets/image-20240424234328563.png)
+
+> buildin middleware
+
+```js
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(express.static('public'))
+```
+
+## Environments
+
+ ```js
+ // default: development
+ console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+ console.log(`app: ${app.get('env')}`);
+ 
+ /*
+   NODE_ENV: undefined
+   app: development
+ */
+ ```
+
+```shell
+export NODE_ENV=production
+/*
+	NODE_ENV: production
+	app: production
+*/
+```
+
+## Configuration
+
+`npm i config`
+
+`export NODE_ENV=dev`
+
+![image-20240425140817288](./README.assets/image-20240425140817288.png)
+
+```json
+// dev.json
+{
+  "name": "My Express Application - Development",
+  "mail": {
+    "host": "dev-mail-server"
+  }
+}
+```
+
+```js
+const config = require('config')
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`app: ${app.get('env')}`);
+console.log(`Application Name: ${config.get('name')}`);
+console.log(`Mail Server: ${config.get('mail.host')}`);
+
+/*
+NODE_ENV: dev
+app: dev
+Application Name: My Express Application - Development
+Mail Server: dev-mail-server
+*/
+```
+
+## Debugging
+
+`npm i debug`
+
+```js
+const startupDebugger = require('debug')('app:startup')
+
+startupDebugger('App starts ...')
+// ......
+startupDebugger('Config loaded ...')
+```
+
+```shell
+export DEBUG=app:startup
+  app:startup App starts ... +0ms
+NODE_ENV: dev
+app: dev
+Application Name: My Express Application - Development
+Mail Server: dev-mail-server
+  app:startup Config loaded ... +2ms
+Sever listening on port 3000
+```
+
+## Templating Engines
+
+`npm i pug`
+
+```js
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+app.get('/', (req, res) => {
+  res.render('index', {title: 'My Express App', message: 'Hello~'});
+});
+```
+
+```pug
+// ./views/index.pug
+html
+  head
+    title= title
+  body
+    h1= message
+```
+
+
+
+
+
+
+
+
+
 
 
 
